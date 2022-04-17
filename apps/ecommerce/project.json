@@ -1,0 +1,73 @@
+{
+  "root": "apps/ecommerce",
+  "sourceRoot": "apps/ecommerce/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/ecommerce",
+        "index": "apps/ecommerce/src/index.html",
+        "baseHref": "/",
+        "main": "apps/ecommerce/src/main.tsx",
+        "polyfills": "apps/ecommerce/src/polyfills.ts",
+        "tsConfig": "apps/ecommerce/tsconfig.app.json",
+        "assets": [
+          "apps/ecommerce/src/favicon.ico",
+          "apps/ecommerce/src/assets"
+        ],
+        "styles": ["apps/ecommerce/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ecommerce/src/environments/environment.ts",
+              "with": "apps/ecommerce/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "ecommerce:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "ecommerce:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ecommerce/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ecommerce"],
+      "options": {
+        "jestConfig": "apps/ecommerce/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
