@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.product-image-container {
+  position: relative;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+.arrow-button {
+  background-color: var(--white);
+  width: 2.1em;
+  height: 2.1em;
+  border-radius: 50%;
+  border: none;
+}
+
+.arrow-button > img {
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.previous-arrow {
+  position: absolute;
+  top: 50%;
+  left: 3%;
+}
+
+.next-arrow {
+  position: absolute;
+  top: 50%;
+  right: 3%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 0 1.5em;
+}
+
+.brand {
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.15em;
+}
+
+.name {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--very-dark-blue);
+  margin: 0;
+}
+
+.description {
+  font-size: 0.9em;
+  color: var(--dark-grayish-blue);
+  line-height: 1.75em;
+  margin: 0;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--very-dark-blue);
+}
+
+.discount {
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--orange);
+  background-color: var(--pale-orange);
+  border-radius: 0.5em;
+  padding: 0.3em 0.5em;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+.original-price {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--grayish-blue);
+  text-decoration: line-through;
+}
+
+.quantity-container {
+  display: flex;
+}
+
+.quantity-input {
+  text-align: center;
+  background-color: var(--light-grayish-blue);
+  border: none;
+  color: var(--very-dark-blue);
+  padding: 1em;
+  font-weight: 700;
+  flex: 1;
+}
+
+.quantity-button {
+  background-color: var(--light-grayish-blue);
+  border: none;
+  color: var(--orange);
+  padding: 1em;
+  font-weight: 700;
+}
+
+.left-button {
+  border-radius: 0.5em 0 0 0.5em;
+}
+
+.right-button {
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+.cart-button {
+  background-color: var(--orange);
+  color: var(--white);
+  font-size: 1em;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.75em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-button > img {
+  color: var(--white);
+  width: 1em;
+  height: 1em;
+  padding: 0 0.5em;
+}
+
+svg {
+  fill: var(--white);
+}
