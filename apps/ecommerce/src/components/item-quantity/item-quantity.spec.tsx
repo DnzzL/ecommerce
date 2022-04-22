@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Header from './header';
+import ItemQuantity from './item-quantity';
 
-describe('Header', () => {
+describe('ItemQuantity', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Header />);
+    const { baseElement } = render(<ItemQuantity />);
     expect(baseElement).toBeTruthy();
   });
 });
