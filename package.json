@@ -9,14 +9,15 @@
   },
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/material": "^5.6.2",
     "core-js": "^3.6.5",
+    "daisyui": "^2.14.1",
     "react": "18.0.0",
     "react-dom": "18.0.0",
+    "react-svg": "^14.1.18",
     "regenerator-runtime": "0.13.7",
-    "tslib": "^2.0.0"
+    "tailwindcss": "^3.0.24",
+    "tslib": "^2.0.0",
+    "use-local-storage-state": "^17.0.1"
   },
   "devDependencies": {
     "@nrwl/cli": "13.10.2",

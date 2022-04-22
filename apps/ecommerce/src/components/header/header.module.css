@@ -1,14 +1,8 @@
 .container {
   display: flex;
   max-height: 2rem;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   align-items: center;
-}
-
-.drawer-container {
-  width: 15em;
-  display: flex;
-  flex-direction: column;
 }
 
 .left {
