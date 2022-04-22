@@ -12,6 +12,7 @@ import styles from './product.module.css';
 import useLocalStorageState from 'use-local-storage-state';
 import { ReactSVG } from 'react-svg';
 import UserAvatar from '../../assets/image-avatar.png';
+import Carousel from '../../components/carousel/carousel';
 
 /* eslint-disable-next-line */
 export interface ProductProps {}
@@ -56,71 +57,61 @@ export function Product(props: ProductProps) {
               </ul>
             </div>
           </div>
-          <Cart></Cart>
-          <div className={styles['product-image-container']}>
-            <img
-              className={styles['product-image']}
-              src={ProductImage1}
-              alt="Product"
-            />
-            <button
-              className={[
-                styles['arrow-button'],
-                styles['previous-arrow'],
-              ].join(' ')}
-            >
-              <img src={PreviousIcon} alt="Previous icon" />
-            </button>
-            <button
-              className={[styles['arrow-button'], styles['next-arrow']].join(
-                ' '
-              )}
-            >
-              <img src={NextIcon} alt="Next icon" />
-            </button>
-          </div>
-          <div className={styles['details']}>
-            <p className={styles['brand']}>Sneaker Company</p>
-            <p className={styles['name']}>Fall Limited Edition Sneakers</p>
-            <p className={styles['description']}>
+
+          <Carousel
+            imagePaths={[
+              '../../assets/image-product-1.jpg',
+              '../../assets/image-product-2.jpg',
+              '../../assets/image-product-3.jpg',
+              '../../assets/image-product-4.jpg',
+            ]}
+          ></Carousel>
+          <div className="p-6">
+            <p className="text-primary uppercase font-bold text-xs">
+              Sneaker Company
+            </p>
+            <p className="text-very-dark-blue font-bold text-3xl py-4">
+              Fall Limited Edition Sneakers
+            </p>
+            <p className="text-neutral text-sm pb-4">
               These low-profile sneakers are your perfect casual wear companion.
               Featuring a durable rubber outer sole, they’ll withstand
               everything the weather can offer.
             </p>
-            <div className={styles['price-container']}>
-              <div className={styles['left']}>
-                <p className={styles['price']}>$125.00</p>
-                <p className={styles['discount']}>50%</p>
+            <div className="flex flex-row pb-6">
+              <div className="flex flex-row flex-1 items-center justify-start">
+                <p className="text-very-dark-blue font-bold text-2xl pr-4">
+                  $125.00
+                </p>
+                <p className="text-primary font-bold text-sm bg-pale-orange rounded p-1">
+                  50%
+                </p>
               </div>
-              <div className={styles['right']}>
-                <p className={styles['original-price']}>$250.00</p>
+              <div className="flex flex-1 items-center justify-end">
+                <p className="text-grayish-blue font-bold line-through">
+                  $250.00
+                </p>
               </div>
             </div>
-            <div className={styles['quantity-container']}>
-              <button
-                className={[
-                  styles['quantity-button'],
-                  styles['left-button'],
-                ].join(' ')}
-              >
+            <div className="flex pb-4">
+              <button className="btn bg-light-grayish-blue border-none rounded-none rounded-tl-lg rounded-bl-lg">
                 <img src={MinusIcon} alt="Minus icon" />
               </button>
               <input
-                className={styles['quantity-input']}
                 type="text"
-                value="0"
+                placeholder="Type here"
+                className="input w-full max-w-xs text-center border-none font-very-dark-blue font-bold bg-light-grayish-blue rounded-none"
               />
-              <button
-                className={[
-                  styles['quantity-button'],
-                  styles['right-button'],
-                ].join(' ')}
-              >
+              <button className="btn bg-light-grayish-blue border-none rounded-none rounded-tr-lg rounded-br-lg">
                 <img src={PlusIcon} alt="Plus icon" />
               </button>
             </div>
-            <button className={styles['cart-button']}>
-              <img src={CartIcon} alt="Cart icon" />
+            <button className="btn btn-primary text-white normal-case font-semibold w-full">
+              <img
+                src={CartIcon}
+                alt="Cart icon"
+                className="h-4 pr-4 fill-white"
+              />{' '}
               Add to cart
             </button>
           </div>
