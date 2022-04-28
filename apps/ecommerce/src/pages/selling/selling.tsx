@@ -28,7 +28,7 @@ export function Selling(props: SellingProps) {
 
   function navbar() {
     return (
-      <div className="w-full navbar md:border-solid md:border-light-grayish-blue md:border-b-4 md:pb-6">
+      <div className="w-full navbar">
         <div className="flex-none md:hidden">
           <label
             htmlFor="my-drawer-3"
@@ -41,12 +41,12 @@ export function Selling(props: SellingProps) {
         <div className="flex items-center justify-start px-10">
           <ReactSVG src={logoPath} />
         </div>
-        <div className="flex-none hidden md:block ">
-          <ul className=" menu menu-horizontal">
+        <div className="flex-none hidden md:block">
+          <ul className="menu menu-horizontal">
             {['Collections', 'Men', 'Women', 'About', 'Contact'].map(
               (item, index) => (
-                <li key={index} className="hover:bg-none">
-                  <a className=" hover:border-b-4 hover:border-primary text-dark-grayish-blue">
+                <li key={index}>
+                  <a className="bg-opacity-0 border-b-4 border-transparent hover:border-b-4 hover:border-primary text-dark-grayish-blue">
                     {item}
                   </a>
                 </li>
@@ -54,7 +54,7 @@ export function Selling(props: SellingProps) {
             )}
           </ul>
         </div>
-        <div className="flex items-center justify-end flex-1 px-2">
+        <div className="flex items-center justify-end flex-1 gap-4 px-2">
           <ReactSVG
             src={cartPath}
             onClick={handleChangeCartOpen}
@@ -63,7 +63,7 @@ export function Selling(props: SellingProps) {
           <img
             src={UserAvatar}
             alt="User avatar"
-            className="object-cover h-6 px-2 rounded-full md:h-8 md:px-4"
+            className="object-cover h-6 px-2 rounded-full cursor-pointer md:h-10 md:px-0 md:border-2 md:border-transparent md:hover:border-primary md:hover:border-2 md:hover:rounded-full"
           />
         </div>
       </div>
@@ -252,6 +252,7 @@ export function Selling(props: SellingProps) {
             <Cart handleRemoveFromCart={handleRemoveFromCart}></Cart>
           </div>
           {navbar()}
+          <div className="hidden md:block md:h-1 md:divider md:bg-light-grayish-blue"></div>
           <input
             type="checkbox"
             id="thumbnail-modal"
