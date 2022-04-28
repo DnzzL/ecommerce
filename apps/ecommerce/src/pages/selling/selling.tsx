@@ -136,10 +136,10 @@ export function Selling(props: SellingProps) {
             className="md:rounded-xl"
           />
         </label>
-        <div className="hidden md:flex md:justify-between">
+        <div className="hidden md:flex md:justify-between md:flex-wrap">
           {props.product.images.map((image, index) => (
             <img
-              onClick={() => setSelectedImage(index)}
+              onClick={() => handleImageClick(index)}
               src={image}
               alt="Product"
               className={classNames('md:w-24 md:rounded-md md:cursor-pointer', {
@@ -199,7 +199,7 @@ export function Selling(props: SellingProps) {
           className="drawer-toggle"
           checked={isDrawerOpen}
         />
-        <div className="flex flex-col drawer-content md:px-16 md:pt-6 md:relative">
+        <div className="flex flex-col drawer-content md:px-16 md:pt-6 md:relative md:max-w-screen-xl md:mx-auto">
           <div
             className={classNames(
               'hidden md:block md:absolute md:right-6 md:w-1/3 md:top-20',
@@ -212,6 +212,18 @@ export function Selling(props: SellingProps) {
           </div>
           {navbar()}
           <div className="hidden md:block md:h-1 md:divider md:bg-light-grayish-blue"></div>
+          <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+          <div className="modal">
+            <div className="relative modal-box md:bg-transparent md:shadow-none md:py-12">
+              <label
+                htmlFor="my-modal-3"
+                className="absolute top-0 py-4 bg-transparent border-none btn btn-sm btn-circle right-4 place-content-center"
+              >
+                <ReactSVG src={closePath} />
+              </label>
+              {lightBox(true)}
+            </div>
+          </div>
           <div className="md:grid md:grid-cols-2">
             <div className="relative stack md:px-12 md:w-full md:flex md:my-auto">
               <div
@@ -221,20 +233,8 @@ export function Selling(props: SellingProps) {
               >
                 <Cart handleRemoveFromCart={handleRemoveFromCart}></Cart>
               </div>
-              <Carousel imagePaths={props.product.images}></Carousel>
               {lightBox(false)}
-              <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-              <div className="modal">
-                <div className="relative modal-box md:bg-transparent md:shadow-none md:py-12">
-                  <label
-                    htmlFor="my-modal-3"
-                    className="absolute top-0 py-4 bg-transparent border-none btn btn-sm btn-circle right-4"
-                  >
-                    <ReactSVG src={closePath} />
-                  </label>
-                  {lightBox(true)}
-                </div>
-              </div>
+              <Carousel imagePaths={props.product.images}></Carousel>
             </div>
             {productDetails(props.product)}
           </div>
