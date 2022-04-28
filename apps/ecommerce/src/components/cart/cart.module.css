@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  border-radius: 0.5em;
+}
+
+h1 {
+  padding: 1.2em 1em;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 12em;
+}
+
+hr {
+  border: 0.1em solid var(--light-grayish-blue);
+  width: 100%;
+}
+
+p {
+  color: var(--dark-grayish-blue);
+}

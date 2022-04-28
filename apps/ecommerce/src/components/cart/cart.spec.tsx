@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Product from './product';
+import Cart from './cart';
 
-describe('Product', () => {
+describe('Cart', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Product />);
+    const { baseElement } = render(<Cart />);
     expect(baseElement).toBeTruthy();
   });
 });
