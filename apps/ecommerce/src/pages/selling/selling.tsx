@@ -28,7 +28,7 @@ export function Selling(props: SellingProps) {
 
   function navbar() {
     return (
-      <div className="w-full navbar">
+      <div className="w-full navbar md:border-solid md:border-light-grayish-blue md:border-b-4 md:pb-6">
         <div className="flex-none md:hidden">
           <label
             htmlFor="my-drawer-3"
@@ -41,12 +41,14 @@ export function Selling(props: SellingProps) {
         <div className="flex items-center justify-start px-10">
           <ReactSVG src={logoPath} />
         </div>
-        <div className="flex-none hidden md:block">
-          <ul className="menu menu-horizontal">
+        <div className="flex-none hidden md:block ">
+          <ul className=" menu menu-horizontal">
             {['Collections', 'Men', 'Women', 'About', 'Contact'].map(
               (item, index) => (
-                <li key={index}>
-                  <a className="text-dark-grayish-blue">{item}</a>
+                <li key={index} className="hover:bg-none">
+                  <a className=" hover:border-b-4 hover:border-primary text-dark-grayish-blue">
+                    {item}
+                  </a>
                 </li>
               )
             )}
@@ -127,30 +129,69 @@ export function Selling(props: SellingProps) {
   }
 
   function lightBox(isInModal: boolean) {
+    const previousButtonPath = '../../assets/icon-previous.svg';
+    const nextButtonPath = '../../assets/icon-next.svg';
+
+    function handleOnNextClick() {
+      selectedImage === props.product.images.length - 1
+        ? setSelectedImage(0)
+        : setSelectedImage(selectedImage + 1);
+    }
+
+    function handleOnPreviousClick() {
+      selectedImage === 0
+        ? setSelectedImage(props.product.images.length - 1)
+        : setSelectedImage(selectedImage - 1);
+    }
+
     return (
       <div className="hidden md:flex md:flex-col md:gap-6 md:w-58">
-        <label htmlFor="my-modal-3" className="modal-button">
-          <img
-            src={props.product.images[selectedImage]}
-            alt="Product"
-            className="md:rounded-xl"
-          />
-        </label>
-        <div className="hidden md:flex md:justify-between md:flex-wrap">
-          {props.product.images.map((image, index) => (
+        <label htmlFor="thumbnail-modal" className="modal-button">
+          <div className="relative">
+            {isInModal ? (
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">
+                <a
+                  href="#slide4"
+                  className="bg-white border-white btn btn-circle btn-sm"
+                  onClick={handleOnPreviousClick}
+                >
+                  <ReactSVG src={previousButtonPath} />
+                </a>
+                <a
+                  href="#slide2"
+                  className="bg-white border-white btn btn-circle btn-sm"
+                  onClick={handleOnNextClick}
+                >
+                  <ReactSVG src={nextButtonPath} />
+                </a>
+              </div>
+            ) : null}
             <img
-              onClick={() => handleImageClick(index)}
-              src={image}
+              src={props.product.images[selectedImage]}
               alt="Product"
-              className={classNames('md:w-24 md:rounded-md md:cursor-pointer', {
-                'md:modal-button': !isInModal,
-                'md:border-2': index === selectedImage,
-                'md:border-primary': index === selectedImage,
-                'md:bg-blend-soft-light': index === selectedImage,
-              })}
+              className="md:rounded-xl"
             />
-          ))}
-        </div>
+          </div>
+        </label>
+        <label htmlFor="">
+          <div className="hidden md:flex md:justify-between md:flex-wrap">
+            {props.product.images.map((image, index) => (
+              <img
+                onClick={() => handleImageClick(index)}
+                src={image}
+                alt="Product"
+                className={classNames(
+                  'md:w-24 md:rounded-md md:cursor-pointer',
+                  {
+                    'modal-button': !isInModal,
+                    'border-2': index === selectedImage,
+                    'border-primary': index === selectedImage,
+                  }
+                )}
+              />
+            ))}
+          </div>
+        </label>
       </div>
     );
   }
@@ -211,30 +252,40 @@ export function Selling(props: SellingProps) {
             <Cart handleRemoveFromCart={handleRemoveFromCart}></Cart>
           </div>
           {navbar()}
-          <div className="hidden md:block md:h-1 md:divider md:bg-light-grayish-blue"></div>
-          <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-          <div className="modal">
+          <input
+            type="checkbox"
+            id="thumbnail-modal"
+            className="modal-toggle"
+          />
+          <label
+            htmlFor="thumbnail-modal"
+            className="cursor-pointer bg-opacity-70 modal"
+          >
             <div className="relative modal-box md:bg-transparent md:shadow-none md:py-12">
               <label
-                htmlFor="my-modal-3"
+                htmlFor="thumbnail-modal"
                 className="absolute top-0 py-4 bg-transparent border-none btn btn-sm btn-circle right-4 place-content-center"
               >
                 <ReactSVG src={closePath} />
               </label>
               {lightBox(true)}
             </div>
-          </div>
-          <div className="md:grid md:grid-cols-2">
-            <div className="relative stack md:px-12 md:w-full md:flex md:my-auto">
-              <div
-                className={classNames('absolute w-11/12 top-6 md:hidden', {
-                  hidden: !isCartOpen,
-                })}
-              >
-                <Cart handleRemoveFromCart={handleRemoveFromCart}></Cart>
-              </div>
+          </label>
+          <div className="md:grid md:grid-cols-2 md:py-16">
+            <div className="md:px-12">
               {lightBox(false)}
-              <Carousel imagePaths={props.product.images}></Carousel>
+              <div className="relative stack md:w-full md:flex md:my-auto">
+                <div
+                  className={classNames('absolute w-11/12 top-6 md:hidden', {
+                    hidden: !isCartOpen,
+                  })}
+                >
+                  <Cart handleRemoveFromCart={handleRemoveFromCart}></Cart>
+                </div>
+                <div className="md:hidden">
+                  <Carousel imagePaths={props.product.images}></Carousel>
+                </div>
+              </div>
             </div>
             {productDetails(props.product)}
           </div>
