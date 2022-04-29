@@ -88,7 +88,7 @@ export const cartSlice = createSlice({
         items: [
           ...state.items.slice(0, idx),
           action.payload,
-          ...state.items.slice(idx),
+          ...state.items.slice(idx + 1),
         ],
       };
     },
@@ -99,10 +99,9 @@ export const cartSlice = createSlice({
       return idx !== -1
         ? {
             ...state,
-            items: [
-              ...state.items.slice(0, idx),
-              ...state.items.slice(idx + 1),
-            ],
+            items: state.items.filter(
+              (item) => item.product.id !== action.payload.id
+            ),
           }
         : state;
     },
