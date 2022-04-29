@@ -17,7 +17,8 @@
         "tsConfig": "apps/ecommerce/tsconfig.app.json",
         "assets": [
           "apps/ecommerce/src/favicon.ico",
-          "apps/ecommerce/src/assets"
+          "apps/ecommerce/src/assets",
+          "apps/ecommerce/src/netlify.toml"
         ],
         "styles": ["apps/ecommerce/src/styles.css"],
         "scripts": [],
