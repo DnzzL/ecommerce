@@ -36,7 +36,7 @@ Users should be able to:
 ### Links
 
 - Solution : [URL](https://github.com/DnzzL/ecommerce)
-- Live Site URL: [URL](https://dnzzl.github.com/ecommerce)
+- Live Site URL: [URL](https://dynamic-snickerdoodle-511fb8.netlify.app/)
 
 ## My process
 
