@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
-import { cartActions, Product } from '../../app/store/cart.slice';
+import {
+  cartActions,
+  Product,
+  selectCartItems,
+} from '../../app/store/cart.slice';
 import CartIcon from '../../assets/icon-cart.svg';
 import UserAvatar from '../../assets/image-avatar.png';
 import Carousel from '../../components/carousel/carousel';
@@ -21,10 +25,19 @@ export function Selling(props: SellingProps) {
   const closePath = '../../assets/icon-close.svg';
   const dispatch = useDispatch();
 
+  const items = useSelector(selectCartItems);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [productQuantity, setProductQuantity] = useState(props.quantity);
   const [selectedImage, setSelectedImage] = useState(0);
+
+  const itemAmount = useCallback(() => {
+    let amount = 0;
+    for (let i = 0; i < items.length; i++) {
+      amount = amount + items[i].quantity;
+    }
+    return amount;
+  }, [items]);
 
   function navbar() {
     return (
@@ -55,11 +68,18 @@ export function Selling(props: SellingProps) {
           </ul>
         </div>
         <div className="flex items-center justify-end flex-1 gap-4 px-2">
-          <ReactSVG
-            src={cartPath}
-            onClick={handleChangeCartOpen}
-            className="cursor-pointer"
-          />
+          <div className="indicator">
+            {itemAmount() > 0 ? (
+              <span className="w-1 indicator-item badge badge-primary">
+                {itemAmount()}
+              </span>
+            ) : null}
+            <ReactSVG
+              src={cartPath}
+              onClick={handleChangeCartOpen}
+              className="cursor-pointer"
+            />
+          </div>
           <img
             src={UserAvatar}
             alt="User avatar"

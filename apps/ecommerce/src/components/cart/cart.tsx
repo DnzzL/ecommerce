@@ -53,20 +53,15 @@ export function Cart(props: CartProps) {
             />
           </div>
         </div>
-        <div className="py-4">
-          <button className="w-full font-semibold text-white normal-case btn btn-primary">
-            Checkout
-          </button>
-        </div>
       </div>
     ));
 
   return (
-    <div className="h-64 shadow-xl card bg-base-100">
+    <div className="shadow-xl min-h-64 card bg-base-100">
       <div className="card-body">
         <h1 className="text-sm card-title">Cart</h1>
         <div className="py-1 divider"></div>
-        <div className="flex items-center h-full">
+        <div className="flex flex-col items-center gap-4">
           {items.length ? (
             cartContent(items)
           ) : (
@@ -74,6 +69,11 @@ export function Cart(props: CartProps) {
               Your cart is empty.
             </p>
           )}
+          <div className="py-4">
+            <button className="font-semibold text-white normal-case btn btn-primary btn-wide">
+              Checkout
+            </button>
+          </div>
         </div>
       </div>
     </div>
