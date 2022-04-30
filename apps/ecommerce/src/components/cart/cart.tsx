@@ -58,7 +58,7 @@ export function Cart(props: CartProps) {
 
   return (
     <div className="shadow-xl min-h-64 card bg-base-100">
-      <div className="card-body">
+      <div className="card-body" onClick={(e) => e.stopPropagation()}>
         <h1 className="text-sm card-title">Cart</h1>
         <div className="py-1 divider"></div>
         <div className="flex flex-col items-center gap-4">

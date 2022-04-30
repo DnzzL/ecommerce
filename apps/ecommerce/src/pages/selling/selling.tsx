@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
@@ -11,7 +12,6 @@ import UserAvatar from '../../assets/image-avatar.png';
 import Carousel from '../../components/carousel/carousel';
 import Cart from '../../components/cart/cart';
 import ItemQuantity from '../../components/item-quantity/item-quantity';
-import classNames from 'classnames';
 
 export interface SellingProps {
   product: Product;
@@ -27,7 +27,7 @@ export function Selling(props: SellingProps) {
 
   const items = useSelector(selectCartItems);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setCartOpen] = useState(false);
   const [productQuantity, setProductQuantity] = useState(props.quantity);
   const [selectedImage, setSelectedImage] = useState(0);
 
@@ -46,7 +46,10 @@ export function Selling(props: SellingProps) {
           <label
             htmlFor="my-drawer-3"
             className="btn btn-square btn-ghost"
-            onClick={() => toggleDrawer(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleDrawer(true);
+            }}
           >
             <ReactSVG src={menuPath} />
           </label>
@@ -76,7 +79,10 @@ export function Selling(props: SellingProps) {
             ) : null}
             <ReactSVG
               src={cartPath}
-              onClick={handleChangeCartOpen}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleCart(true);
+              }}
               className="cursor-pointer"
             />
           </div>
@@ -224,8 +230,8 @@ export function Selling(props: SellingProps) {
     setDrawerOpen(isOpen);
   }
 
-  function handleChangeCartOpen() {
-    setIsCartOpen(!isCartOpen);
+  function toggleCart(isOpen: boolean) {
+    setCartOpen(isOpen);
   }
 
   function handleProductDecrement() {
@@ -253,14 +259,20 @@ export function Selling(props: SellingProps) {
 
   return (
     <div>
-      <div className="drawer ">
+      <div className="drawer">
         <input
           id="my-drawer-3"
           type="checkbox"
           className="drawer-toggle"
           checked={isDrawerOpen}
         />
-        <div className="flex flex-col drawer-content md:px-16 md:pt-6 md:relative md:max-w-screen-xl md:mx-auto">
+        <div
+          className="flex flex-col drawer-content md:px-16 md:pt-6 md:relative md:max-w-screen-xl md:mx-auto"
+          onClick={() => {
+            toggleCart(false);
+            toggleDrawer(false);
+          }}
+        >
           <div
             className={classNames(
               'hidden md:block md:absolute md:right-6 md:w-1/3 md:top-20',
@@ -312,7 +324,13 @@ export function Selling(props: SellingProps) {
           </div>
         </div>
         <div className="drawer-side">
-          <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
+          <label
+            htmlFor="my-drawer-3"
+            className="drawer-overlay"
+            onClick={() => {
+              toggleDrawer(false);
+            }}
+          ></label>
           <ul className="p-4 overflow-y-auto menu w-80 bg-base-100">
             <ReactSVG
               src={closePath}
